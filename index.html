@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>영단어 스펠링 연습 - Unit 24~60</title>
+<style>
+  :root {
+    --cream: #FFF8ED;
+    --navy: #2B3A55;
+    --coral: #FF6B5B;
+    --mint: #3CB4A4;
+    --yellow: #FFC94A;
+    --ink: #2B3A55;
+  }
+
+- { box-sizing: border-box; }
+
+html {
+height: -webkit-fill-available;
+}
+
+body {
+margin: 0;
+font-family: -apple-system, ‘SF Pro Text’, system-ui, sans-serif;
+background: var(–cream);
+background-image:
+radial-gradient(circle at 10% 10%, rgba(255,201,74,0.15) 0%, transparent 35%),
+radial-gradient(circle at 90% 90%, rgba(60,180,164,0.12) 0%, transparent 35%);
+color: var(–ink);
+min-height: 100vh;
+min-height: -webkit-fill-available;
+min-height: 100dvh;
+min-height: var(–vh-actual, 100dvh);
+padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+}
+
+.wrap {
+max-width: 560px;
+width: 100%;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+
+header {
+text-align: center;
+margin-bottom: 16px;
+flex-shrink: 0;
+}
+
+h1 {
+font-family: -apple-system, ‘SF Pro Display’, system-ui, sans-serif;
+font-size: 24px;
+font-weight: 800;
+margin: 0 0 4px;
+color: var(–navy);
+}
+
+.sub {
+font-size: 14px;
+color: #6b7690;
+font-weight: 600;
+}
+
+/* ––––– Unit selection screen ––––– */
+.select-screen {
+background: #fff;
+border-radius: 24px;
+padding: 20px 18px;
+box-shadow: 0 10px 30px rgba(43,58,85,0.08);
+border: 2px solid #F0E9D8;
+}
+
+.select-toolbar {
+display: flex;
+gap: 8px;
+margin-bottom: 14px;
+}
+
+.toolbar-btn {
+flex: 1;
+background: var(–cream);
+border: 2px solid #E8E2D4;
+color: var(–navy);
+font-size: 13px;
+font-weight: 700;
+padding: 10px 8px;
+border-radius: 12px;
+}
+.toolbar-btn:active { transform: scale(0.96); }
+
+.unit-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 8px;
+margin-bottom: 18px;
+}
+
+.unit-chip {
+position: relative;
+}
+.unit-chip input {
+position: absolute;
+opacity: 0;
+width: 100%;
+height: 100%;
+margin: 0;
+cursor: pointer;
+}
+.unit-chip label {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 10px 4px;
+border-radius: 12px;
+border: 2px solid #E8E2D4;
+background: var(–cream);
+color: #8a93ab;
+font-weight: 800;
+font-size: 14px;
+transition: all 0.15s;
+}
+.unit-chip input:checked + label {
+background: var(–navy);
+border-color: var(–navy);
+color: #fff;
+}
+
+.selection-summary {
+font-size: 14px;
+font-weight: 700;
+color: var(–navy);
+text-align: center;
+margin-bottom: 14px;
+min-height: 20px;
+}
+.selection-summary .count {
+color: var(–coral);
+}
+
+.btn-start {
+background: var(–coral);
+color: #fff;
+width: 100%;
+font-size: 17px;
+padding: 16px;
+}
+.btn-start:disabled {
+background: #E8E2D4;
+color: #b8bfd0;
+}
+
+/* ––––– Quiz screen (reused) ––––– */
+.progress-bar {
+width: 100%;
+height: 10px;
+background: #E8E2D4;
+border-radius: 20px;
+overflow: hidden;
+margin: 0 0 6px;
+flex-shrink: 0;
+}
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–mint), var(–coral));
+width: 0%;
+transition: width 0.4s ease;
+}
+.progress-label {
+font-size: 13px;
+font-weight: 700;
+color: #8a93ab;
+text-align: right;
+}
+
+.back-row {
+display: flex;
+justify-content: flex-start;
+margin-bottom: 8px;
+flex-shrink: 0;
+}
+.btn-back {
+background: none;
+border: none;
+color: #8a93ab;
+font-size: 14px;
+font-weight: 700;
+padding: 4px 0;
+}
+
+.card {
+background: #fff;
+border-radius: 24px;
+padding: 24px 20px;
+box-shadow: 0 10px 30px rgba(43,58,85,0.08);
+border: 2px solid #F0E9D8;
+position: relative;
+flex-shrink: 0;
+}
+
+.unit-tag {
+display: inline-block;
+font-family: -apple-system, ‘SF Pro Display’, system-ui, sans-serif;
+font-size: 12px;
+font-weight: 700;
+color: #fff;
+background: var(–navy);
+padding: 4px 12px;
+border-radius: 20px;
+margin-bottom: 16px;
+}
+
+.meaning {
+font-size: 22px;
+font-weight: 800;
+line-height: 1.4;
+margin-bottom: 6px;
+color: var(–navy);
+}
+
+.example-kr {
+font-size: 13px;
+color: #8a93ab;
+font-weight: 600;
+margin-bottom: 18px;
+line-height: 1.5;
+}
+
+.input-row {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-bottom: 12px;
+}
+
+input[type=“text”] {
+width: 100%;
+font-size: 20px;
+font-family: -apple-system, ‘SF Pro Text’, system-ui, sans-serif;
+font-weight: 700;
+padding: 14px 16px;
+border-radius: 14px;
+border: 3px solid #E8E2D4;
+outline: none;
+background: var(–cream);
+color: var(–navy);
+transition: border-color 0.2s;
+}
+input[type=“text”]:focus {
+border-color: var(–mint);
+}
+input[type=“text”].wrong-shake {
+border-color: var(–coral);
+animation: shake 0.3s;
+}
+input[type=“text”].correct-glow {
+border-color: var(–mint);
+background: #E9FBF7;
+}
+
+@keyframes shake {
+0%, 100% { transform: translateX(0); }
+25% { transform: translateX(-6px); }
+75% { transform: translateX(6px); }
+}
+
+button {
+font-family: -apple-system, ‘SF Pro Display’, system-ui, sans-serif;
+font-weight: 700;
+font-size: 15px;
+border: none;
+border-radius: 14px;
+padding: 14px 20px;
+cursor: pointer;
+transition: transform 0.15s, box-shadow 0.15s;
+}
+button:active { transform: scale(0.96); }
+
+.btn-check {
+background: var(–navy);
+color: #fff;
+width: 100%;
+}
+.btn-check:hover { box-shadow: 0 4px 14px rgba(43,58,85,0.3); }
+
+.feedback {
+min-height: 28px;
+font-weight: 700;
+font-size: 15px;
+margin-top: 4px;
+}
+.feedback.correct { color: var(–mint); }
+.feedback.incorrect { color: var(–coral); }
+
+.footer-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 18px;
+}
+
+.stats {
+font-size: 13px;
+color: #8a93ab;
+font-weight: 700;
+}
+.stats span { color: var(–coral); }
+
+.done-screen {
+text-align: center;
+padding: 20px 0;
+}
+.done-screen .big-emoji {
+font-size: 56px;
+margin-bottom: 8px;
+}
+.done-screen h2 {
+font-family: -apple-system, ‘SF Pro Display’, system-ui, sans-serif;
+color: var(–navy);
+margin: 0 0 6px;
+}
+.done-screen p {
+color: #6b7690;
+font-weight: 600;
+margin-bottom: 20px;
+}
+
+.retry-list {
+text-align: left;
+background: var(–cream);
+border-radius: 14px;
+padding: 12px 16px;
+margin-bottom: 20px;
+font-size: 14px;
+max-height: 260px;
+overflow-y: auto;
+}
+.retry-list div {
+padding: 6px 0;
+border-bottom: 1px dashed #E8E2D4;
+display: flex;
+justify-content: space-between;
+gap: 10px;
+font-weight: 700;
+}
+.retry-list div:last-child { border-bottom: none; }
+.retry-list .word { color: var(–navy); flex-shrink: 0; }
+.retry-list .kr { color: #8a93ab; font-weight: 600; text-align: right; }
+
+.btn-restart {
+background: var(–coral);
+color: #fff;
+width: 100%;
+}
+
+.btn-review {
+background: var(–mint);
+color: #fff;
+width: 100%;
+margin-bottom: 10px;
+}
+
+.btn-pick-again {
+background: none;
+border: 2px solid #E8E2D4;
+color: #8a93ab;
+width: 100%;
+margin-top: 10px;
+font-size: 13px;
+padding: 10px;
+}
+
+body.keyboard-open header,
+body.keyboard-open .progress-bar,
+body.keyboard-open .progress-label,
+body.keyboard-open .back-row {
+display: none;
+}
+body.keyboard-open .card {
+padding: 10px 14px;
+}
+body.keyboard-open .unit-tag {
+margin-bottom: 6px;
+padding: 3px 10px;
+font-size: 11px;
+}
+body.keyboard-open .meaning {
+font-size: 17px;
+margin-bottom: 2px;
+}
+body.keyboard-open .example-kr {
+display: none;
+}
+body.keyboard-open .input-row {
+gap: 6px;
+margin-bottom: 6px;
+}
+body.keyboard-open input[type=“text”] {
+padding: 8px 12px;
+font-size: 17px;
+}
+body.keyboard-open button {
+padding: 8px 14px;
+font-size: 14px;
+}
+body.keyboard-open .feedback {
+min-height: 0;
+font-size: 13px;
+}
+body.keyboard-open .footer-row {
+margin-top: 4px;
+}
+body.keyboard-open .wrap {
+justify-content: flex-start;
+}
+
+.hidden { display: none !important; }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>✏️ 영단어 스펠링 연습</h1>
+    <div class="sub" id="subTitle">Unit 24~60 · 원하는 유닛을 골라 시작하세요</div>
+  </header>
+
+  <!-- Unit selection screen -->
+
+  <div class="select-screen" id="selectScreen">
+    <div class="select-toolbar">
+      <button class="toolbar-btn" id="selectAllBtn">전체 선택</button>
+      <button class="toolbar-btn" id="clearAllBtn">전체 해제</button>
+    </div>
+    <div class="unit-grid" id="unitGrid"></div>
+    <div class="selection-summary" id="selectionSummary">유닛을 선택하세요</div>
+    <button class="btn-start" id="startBtn" disabled>시작하기</button>
+  </div>
+
+  <!-- Quiz screen -->
+
+  <div id="quizScreen" class="hidden">
+    <div class="back-row">
+      <button class="btn-back" id="backBtn">‹ 유닛 다시 선택</button>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 0</div>
+    <div class="card" id="quizCard"></div>
+  </div>
+</div>
+
+<script>
+
+const WORDS = [
+// Unit 24
+{unit:24, word:"useful", meaning:"쓸모 있는, 유익한", example:"유용한 정보"},
+{unit:24, word:"take note", meaning:"주목하다", example:"그가 하는 말에 주목하라."},
+{unit:24, word:"source", meaning:"근원, 원인, 출처", example:"에너지원 / 원본, 원전"},
+{unit:24, word:"soul", meaning:"영혼, 정신, 마음", example:"그는 돈에 영혼을 팔았다."},
+{unit:24, word:"research", meaning:"연구, 조사", example:"연구 센터 / 시장 조사"},
+{unit:24, word:"perhaps", meaning:"아마도, 어쩌면", example:"어쩌면 내일 눈이 올 것이다."},
+{unit:24, word:"or so", meaning:"~쯤, ~정도, ~가량", example:"그는 1시간쯤 후에나 돌아올 것이다."},
+{unit:24, word:"male", meaning:"남자의, 수컷의", example:"그 남자 모델들은 그들의 근육을 자랑한다."},
+{unit:24, word:"look out of", meaning:"~에서 밖을 내다보다", example:"많은 사람들이 그 창문 밖을 내다본다."},
+{unit:24, word:"healthful", meaning:"건강에 좋은, 건전한", example:"건강식품 / 건강에 좋은 식사"},
+{unit:24, word:"fare", meaning:"승차요금, 운임", example:"택시 요금 / 왕복 요금"},
+{unit:24, word:"depressed", meaning:"의기소침한, 우울한", example:"우울한 기분으로"},
+{unit:24, word:"challenge", meaning:"도전; 도전하다", example:"도전하다 / 당면한 과제"},
+{unit:24, word:"alive", meaning:"살아 있는, 활기찬", example:"살아생전에 / 재미있어지다"},
+// Unit 25
+{unit:25, word:"value", meaning:"가치; 소중하게 생각하다", example:"시장 가치 / 화폐 가치"},
+{unit:25, word:"valley", meaning:"골짜기, 계곡", example:"골바람 / 골짜기 바닥"},
+{unit:25, word:"southern", meaning:"남쪽의", example:"남향"},
+{unit:25, word:"resemble", meaning:"닮다, 유사하다", example:"많이 닮다 / 닮아가다"},
+{unit:25, word:"period", meaning:"기간, 시대", example:"성장기 / 보증 기간"},
+{unit:25, word:"manage", meaning:"관리하다, 경영하다", example:"~을 찾는데 성공하다 / 관리 능력"},
+{unit:25, word:"height", meaning:"키, 높이", example:"해발고도 / 높이를 재다"},
+{unit:25, word:"go mad", meaning:"미치다", example:"나는 더 오래 기다려야 한다면 미쳐 버릴 것이다."},
+{unit:25, word:"farewell", meaning:"작별", example:"고별인사를 하다 / 송별회를 열다"},
+{unit:25, word:"desert", meaning:"사막", example:"무인도 / 사막 먼지"},
+{unit:25, word:"come up to", meaning:"~에 다가가다", example:"그 물이 목까지 올라왔다."},
+{unit:25, word:"character", meaning:"특성, 성격, 인물, 문자", example:"허구 인물 / 한자"},
+{unit:25, word:"at once", meaning:"곧, 즉시", example:"즉시 이리로 와라."},
+{unit:25, word:"although", meaning:"비록 ~이지만", example:"해가 비치고 있긴 했지만 따뜻하지 않았다."},
+// Unit 26
+{unit:26, word:"various", meaning:"다양한, 여러 가지의", example:"다양한 종류들 / 가지각색으로"},
+{unit:26, word:"take a test", meaning:"시험을 치다", example:"그들은 다음 날 시험을 봐야만 했다."},
+{unit:26, word:"spice", meaning:"양념, 향료", example:"향이 진한 향신료"},
+{unit:26, word:"reservation", meaning:"예약", example:"객실 예약 / 예약을 확인하다"},
+{unit:26, word:"physical", meaning:"육체의, 물리적인", example:"신체 활동 / 물리 요법"},
+{unit:26, word:"out of", meaning:"~에서, ~밖으로", example:"많은 벌들이 그 벌집 밖으로 나온다."},
+{unit:26, word:"Mars", meaning:"화성", example:"나는 화성과 금성을 구별할 수 있다."},
+{unit:26, word:"make a call", meaning:"전화하다", example:"내가 전화를 할 동안 잠깐 기다려 줄 수 있니?"},
+{unit:26, word:"hell", meaning:"지옥", example:"교통 지옥"},
+{unit:26, word:"farther", meaning:"더 멀리", example:"더 저쪽에, 나중에 / 북쪽으로 더 멀리"},
+{unit:26, word:"desire", meaning:"바라다; 욕망", example:"명예욕 / 금전욕"},
+{unit:26, word:"characteristic", meaning:"특유의; 특징, 특성", example:"바나나들은 그들 자신의 특유의 향을 가지고 있다."},
+{unit:26, word:"amusing", meaning:"재미나는, 웃기는", example:"재미있는 이야기 / 재미있는 사건"},
+{unit:26, word:"amount", meaning:"총계, 양", example:"강우량 / 총액"},
+// Unit 27
+{unit:27, word:"vehicle", meaning:"차량, 전달 수단", example:"다용도 차 / 자동차 산업"},
+{unit:27, word:"spirit", meaning:"정신, 영혼", example:"공동체 정신 / 마음속으로"},
+{unit:27, word:"respect", meaning:"존경하다; 존경", example:"자기존중, 자존심 / 깊은 존경심"},
+{unit:27, word:"pigeon", meaning:"비둘기", example:"한 남자가 그 비둘기에게 먹이를 주고 있다."},
+{unit:27, word:"match", meaning:"성냥, 시합; 어울리다", example:"성냥 한 통 / 테니스 시합"},
+{unit:27, word:"helpful", meaning:"도움이 되는, 유용한", example:"유익한 조언 / 유익한 비평"},
+{unit:27, word:"go on a trip", meaning:"여행을 떠나다", example:"나는 이번 겨울에 여행을 가고 싶다."},
+{unit:27, word:"fashionable", meaning:"유행하는, 부유층이 애용하는", example:"유행하는 드레스 / 상류 사회"},
+{unit:27, word:"diet", meaning:"식사, 음식, 다이어트", example:"육식 / 식이 요법으로"},
+{unit:27, word:"communicate with", meaning:"~와 의사소통하다", example:"나는 사람들과 의사소통하기 위해 음악을 이용한다."},
+{unit:27, word:"chat", meaning:"담소를 나누다; 담소", example:"대화방, 채팅 룸 / 토크 쇼"},
+{unit:27, word:"charming", meaning:"매력적인, 멋진", example:"매력적인 용모"},
+{unit:27, word:"at the same time", meaning:"동시에", example:"그녀는 동시에 웃다가 울다가 했다."},
+{unit:27, word:"ancient", meaning:"고대의, 옛날의", example:"고대 문명 / 고대부터"},
+// Unit 28
+{unit:28, word:"view", meaning:"관점, 견해, 전망", example:"관점 / 다른 견해"},
+{unit:28, word:"take a trip to", meaning:"~로 여행하다", example:"나는 이번 주말에 제주로 여행을 갈 것이다."},
+{unit:28, word:"spread", meaning:"펴다, 펼치다, 뿌리다", example:"씨앗들을 뿌리다 / 날개들을 펼치다"},
+{unit:28, word:"respond", meaning:"대답하다, 반응하다", example:"요청에 응하다 / 질문에 답하다"},
+{unit:28, word:"pill", meaning:"알약", example:"하루에 세 번 한 알씩 복용하세요."},
+{unit:28, word:"over again", meaning:"반복해서, 다시 한 번", example:"다시 한 번 해 주시겠습니까?"},
+{unit:28, word:"mathematics", meaning:"수학", example:"수학의 천재"},
+{unit:28, word:"make a mistake", meaning:"실수하다", example:"실수하지 않도록 주의하세요."},
+{unit:28, word:"hike", meaning:"도보 여행; 도보 여행하다", example:"프로방스 지역은 도보 여행하기에 좋은 곳이다."},
+{unit:28, word:"fault", meaning:"흠, 결점, 잘못", example:"유리잔의 흠집"},
+{unit:28, word:"difficulty", meaning:"어려움, 곤란", example:"곤란한 일 / 곤란을 느끼다"},
+{unit:28, word:"difference", meaning:"차이(점)", example:"시차 / 차액을 지불하다"},
+{unit:28, word:"check", meaning:"수표, 확인, 점검", example:"수표로 지불하다 / 건강 검진"},
+{unit:28, word:"anger", meaning:"노여움, 성, 화", example:"그는 화가 나서 그의 주먹으로 그 책상을 내려쳤다."},
+// Unit 29
+{unit:29, word:"violent", meaning:"폭력적인, 격렬한", example:"폭력적인 범죄 / 극심한 변화"},
+{unit:29, word:"stadium", meaning:"경기장, 스타디움", example:"야구장 / 공설 운동장"},
+{unit:29, word:"rest", meaning:"휴식; 쉬다", example:"휴식처"},
+{unit:29, word:"pity", meaning:"동정, 불쌍히 여김", example:"자기 연민 / 측은히 여기다"},
+{unit:29, word:"meaning", meaning:"의미, 의의", example:"특별한 의미 / 교육의 의의"},
+{unit:29, word:"hippo", meaning:"하마", example:"그 사람들은 그 새끼 하마에 대해 걱정을 했다."},
+{unit:29, word:"go to sea", meaning:"선원이 되다", example:"그는 선원이 되기로 결심했다."},
+{unit:29, word:"fear", meaning:"공포, 두려움", example:"어둠에 대한 공포 / 고소공포증"},
+{unit:29, word:"favorable", meaning:"호의적인, 찬성의", example:"유리한 조건 / 호의적인 보고"},
+{unit:29, word:"diligence", meaning:"근면함", example:"우리는 그녀의 근면함을 높게 평가한다."},
+{unit:29, word:"cry out", meaning:"큰소리로 외치다", example:"그녀는 도와달라고 큰소리로 외쳤다."},
+{unit:29, word:"cheer", meaning:"환호하다, 응원하다; 환호", example:"그 군중은 그가 그 무대에 나오자 환호했다."},
+{unit:29, word:"be able to", meaning:"~할 수 있다", example:"그 작은 꼬마는 그의 이름을 쓸 수 있다."},
+{unit:29, word:"angle", meaning:"각도, 모서리", example:"직각, 90도 / 가파른 경사"},
+// Unit 30
+{unit:30, word:"vote", meaning:"투표하다; 투표", example:"무기명 투표 / 투표로 결정하다"},
+{unit:30, word:"take off", meaning:"이륙하다, 벗다", example:"그 비행기는 1시간 늦게 이륙했다."},
+{unit:30, word:"staff", meaning:"직원, 참모, 임원", example:"직원 구성원 / 의료 직원"},
+{unit:30, word:"result", meaning:"결과; 결과로 생기다", example:"최종 결과 / 실패로 끝나다"},
+{unit:30, word:"pleasant", meaning:"즐거운, 상쾌한", example:"쾌적한 기후 / 즐거운 추억"},
+{unit:30, word:"pass an exam", meaning:"시험에 합격하다", example:"우리는 이번에 시험에 합격해야 한다."},
+{unit:30, word:"measure", meaning:"재다, 측정하다; 치수, 측정", example:"줄자 / 허리둘레의 치수"},
+{unit:30, word:"make noise", meaning:"소리를 내다, 떠들다", example:"그 도서관에서는 소음을 내지 마라."},
+{unit:30, word:"honesty", meaning:"정직", example:"그의 정직함은 의심의 여지가 없다."},
+{unit:30, word:"homeless", meaning:"집 없는, 노숙자의", example:"뉴욕에는 집 없는 사람들이 많다."},
+{unit:30, word:"fellow", meaning:"친구, 동료, 짝", example:"착한 사람, 친한 친구 / 학우"},
+{unit:30, word:"diplomat", meaning:"외교관", example:"그는 최고의 외교관으로 기억되어 있다."},
+{unit:30, word:"chick", meaning:"병아리", example:"Jake의 가족은 이 병아리를 애완동물로 기르기로 결정했다."},
+{unit:30, word:"animation", meaning:"생기, 활기, 만화영화", example:"활기를 띠고 / 만화 예술가"},
+// Unit 31
+{unit:31, word:"wallet", meaning:"지갑", example:"전자 지갑 / 가죽 지갑"},
+{unit:31, word:"standard", meaning:"표준, 기준", example:"생활 수준"},
+{unit:31, word:"right", meaning:"권리, 정의; 옳은, 바른", example:"알 권리 / 인권"},
+{unit:31, word:"please", meaning:"기쁘게 하다", example:"하고 싶은 대로 하다"},
+{unit:31, word:"medicine", meaning:"약, 의약품", example:"감기약 / 한의학"},
+{unit:31, word:"medical", meaning:"의료의, 의학의", example:"의료 보험 / 건강 진단"},
+{unit:31, word:"hopeful", meaning:"희망이 있는, 유망한", example:"기대에 찬 미소 / 유망한 보도"},
+{unit:31, word:"graduate from", meaning:"~을 졸업하다", example:"당신은 언제 대학교를 졸업했나요?"},
+{unit:31, word:"female", meaning:"여성, 암컷", example:"암고양이 / 여성복"},
+{unit:31, word:"direction", meaning:"방향, 지휘, 지시", example:"잘못된 방향 / 방향 감각을 잃다"},
+{unit:31, word:"day after day", meaning:"날마다, 매일", example:"그녀는 매일 그 같은 일을 하는 것을 싫어한다."},
+{unit:31, word:"chimney", meaning:"굴뚝", example:"굴뚝 청소부"},
+{unit:31, word:"be afraid of", meaning:"~을 두려워하다", example:"그 남자는 어둠을 두려워한다."},
+{unit:31, word:"announce", meaning:"알리다, 발표하다", example:"계획을 발표하다 / 뉴스를 발표하다"},
+// Unit 32
+{unit:32, word:"warn", meaning:"경고하다", example:"위험을 경고하다 / 경고하여 떼어내다"},
+{unit:32, word:"take turns", meaning:"교대하다, 교대로 하다", example:"그 부모들이 교대로 돌아가며 그 알들을 따뜻하게 한다."},
+{unit:32, word:"state", meaning:"상태, 신분, 나라", example:"액체 상태 / 흥분 상태"},
+{unit:32, word:"rival", meaning:"경쟁자, 적수", example:"무적으로"},
+{unit:32, word:"plenty", meaning:"많음, 다량", example:"많은, 충분한 / 풍년"},
+{unit:32, word:"pleasure", meaning:"기쁨, 즐거움", example:"고락 / ~에서 기쁨을 찾다"},
+{unit:32, word:"pay for", meaning:"대금을 지불하다", example:"이번에는 내가 그 식사비를 지불할 것이다."},
+{unit:32, word:"melt", meaning:"녹다, 녹이다", example:"버터처럼 녹다 / 불에 녹다"},
+{unit:32, word:"make fun of", meaning:"(~을) 놀리다", example:"그 중요한 것은 그들을 놀려서는 안 된다는 것이다."},
+{unit:32, word:"horror", meaning:"공포, 전율", example:"공포 영화 / 무서워서"},
+{unit:32, word:"file", meaning:"철하다, 정리 보관하다", example:"나는 그 편지들을 서랍 안에 보관해 두었다."},
+{unit:32, word:"directly", meaning:"직접(적)으로, 곧장", example:"바로 정면에 / 정반대로"},
+{unit:32, word:"chip", meaning:"얇게 썬 조각, 부스러기", example:"나무 도막 / 감자 칩"},
+{unit:32, word:"anywhere", meaning:"어디든지, 어디에서도", example:"만약 어딘가에 있다면"},
+// Unit 33
+{unit:33, word:"warning", meaning:"경고, 경보, 예고", example:"조기 경보 / 호우 경보"},
+{unit:33, word:"steal", meaning:"훔치다", example:"디자인을 도용하다 / 공짜로 타다"},
+{unit:33, word:"root", meaning:"뿌리, 근원, 핵심", example:"뿌리 채소 / 그 문제의 핵심"},
+{unit:33, word:"roll", meaning:"구르다, 굴리다; 두루마리", example:"바퀴를 굴리다 / 필름 한 통"},
+{unit:33, word:"poem", meaning:"시", example:"시를 짓다"},
+{unit:33, word:"mend", meaning:"고치다, 수선하다", example:"옷을 깁다"},
+{unit:33, word:"however", meaning:"아무리 ~해도, 그러하지만", example:"그러나 아무도 누가 그것들을 발명했는지 알지 못한다."},
+{unit:33, word:"had better", meaning:"~하는 편이 더 좋다", example:"너는 그런 사람을 만나지 않는 것이 좋겠다."},
+{unit:33, word:"filter", meaning:"여과기, 여과 장치", example:"공기 여과기 / 거름종이, 여과지"},
+{unit:33, word:"do one's best", meaning:"최선을 다하다", example:"나는 최선을 다하도록 노력할 것이다."},
+{unit:33, word:"disappear", meaning:"사라지다", example:"시야에서 사라지다"},
+{unit:33, word:"choice", meaning:"선택", example:"개인적인 선택 / 선택의 자유"},
+{unit:33, word:"be busy -ing", meaning:"~하느라 바쁘다", example:"그녀는 그 시험을 준비하느라 바쁘다."},
+{unit:33, word:"apologize", meaning:"사과하다", example:"정중히 사과하다 / ~에 대해 사과하다"},
+// Unit 34
+{unit:34, word:"waste", meaning:"낭비하다; 쓰레기", example:"핵폐기물 / 산업 폐기물"},
+{unit:34, word:"talk about", meaning:"~에 대해서 말하다", example:"나는 더 이상 그것에 대해서 말하고 싶지 않다."},
+{unit:34, word:"stomach", meaning:"위, 배", example:"위통, 복통 / 배탈이 나다"},
+{unit:34, word:"step", meaning:"조치, 수단, 단계", example:"반보, 반응 / 기본 단계"},
+{unit:34, word:"rough", meaning:"거친, 대충의", example:"대략적인 개요 / 거친 피부"},
+{unit:34, word:"poet", meaning:"시인", example:"바이런은 위대한 시인으로 평가되고 있다."},
+{unit:34, word:"plenty of", meaning:"많은", example:"저 가게에는 많은 손님들이 있다."},
+{unit:34, word:"more and more", meaning:"더욱 더, 점점 더", example:"점점 더 많은 사람들이 애완견을 기른다."},
+{unit:34, word:"mention", meaning:"언급하다, 거론하다", example:"일일이 열거하다 / 주제를 언급하다"},
+{unit:34, word:"hug", meaning:"포옹하다, 껴안다", example:"서로 끌어안다"},
+{unit:34, word:"fireplace", meaning:"난로, 벽난로", example:"그 벽난로에 불이 타오르고 있었다."},
+{unit:34, word:"discount", meaning:"할인; 할인하다", example:"염가 판매 / 할인율"},
+{unit:34, word:"classical", meaning:"고전주의의, 고전의", example:"고전 음악 / 고전 문학"},
+{unit:34, word:"appearance", meaning:"출현, 외모, 용모", example:"단정한 용모"},
+// Unit 35
+{unit:35, word:"weekday", meaning:"평일", example:"이 상점은 주중에 매일 문을 연다."},
+{unit:35, word:"web", meaning:"거미줄, 직물, 물갈퀴", example:"도로망 / 거미줄(집)"},
+{unit:35, word:"stranger", meaning:"낯선 사람, 이방인", example:"그 길에서 낯선 사람을 돕는 것은 쉽지 않다."},
+{unit:35, word:"row", meaning:"줄, 열", example:"앞 열 / 줄지어 서다"},
+{unit:35, word:"point", meaning:"가리키다; 끝, 지점, 시점", example:"끓는 점 / 출발점"},
+{unit:35, word:"method", meaning:"방법, 순서, 체계", example:"과학적 방법 / 새로운 방법으로"},
+{unit:35, word:"huge", meaning:"거대한, 막대한", example:"큰 충격 / 대성공"},
+{unit:35, word:"hand in hand", meaning:"손에 손을 잡고", example:"그 소녀들은 손에 손을 잡고 춤췄다."},
+{unit:35, word:"fit", meaning:"적당한, 알맞은", example:"쓸모없는 / 적절치 않다"},
+{unit:35, word:"do the dishes", meaning:"설거지하다", example:"설거지 좀 해 줄래?"},
+{unit:35, word:"discover", meaning:"발견하다, ~을 알다", example:"금광을 발견하다"},
+{unit:35, word:"clearly", meaning:"분명히, 틀림없이", example:"그녀는 모든 것을 아주 명확하게 설명해 주었다."},
+{unit:35, word:"be different from", meaning:"~와 다르다", example:"이것은 분명히 저것과 다르다."},
+{unit:35, word:"apply", meaning:"지원하다, 신청하다", example:"일자리에 지원하다"},
+// Unit 36
+{unit:36, word:"weigh", meaning:"무게를 달다", example:"~보다 체중이 더 적다"},
+{unit:36, word:"talk to", meaning:"~에게 이야기하다", example:"그녀에게 나에 대해서 이야기하지 마라."},
+{unit:36, word:"strength", meaning:"힘, 세기", example:"체력 / 힘이 늘다"},
+{unit:36, word:"rubber", meaning:"고무", example:"고무 도장 / 천연 고무"},
+{unit:36, word:"put A into B", meaning:"A를 B에 넣다(더하다)", example:"그녀는 장미 몇 송이를 그 꽃병에 꽂았다."},
+{unit:36, word:"politician", meaning:"정치인", example:"한 정치인은 그 택시 운전사들의 생각에 동의한다."},
+{unit:36, word:"more than", meaning:"~ 이상", example:"나는 너의 이름을 3번 이상 불렀다."},
+{unit:36, word:"miracle", meaning:"기적", example:"기적을 행하다 / 기적으로"},
+{unit:36, word:"humorous", meaning:"재미있는, 유머가 풍부한", example:"그는 그 정치인에 대해 재미있는 평들을 썼다."},
+{unit:36, word:"fix", meaning:"고치다, 고정시키다", example:"기계를 고치다 / 그 벽에 거울을 고정하다"},
+{unit:36, word:"discussion", meaning:"토론, 논쟁", example:"진지한 논의 / 공개 토론회"},
+{unit:36, word:"climate", meaning:"기후", example:"기후 변화 / 열대 기후"},
+{unit:36, word:"argue", meaning:"주장하다, 논의하다", example:"~와 논쟁하다 / ~에 대해 논쟁하다"},
+{unit:36, word:"aquarium", meaning:"수족관", example:"그 수족관은 많은 종류의 물고기들을 가지고 있다."},
+// Unit 37
+{unit:37, word:"wheat", meaning:"밀", example:"통밀 빵 / 밀알 한 톨"},
+{unit:37, word:"stripe", meaning:"줄무늬", example:"얼룩말들은 왜 줄무늬들을 가지고 있나요?"},
+{unit:37, word:"rude", meaning:"무례한, 버릇없는", example:"무례한 대답 / 무례한 말을 하다"},
+{unit:37, word:"pollution", meaning:"오염", example:"공기(대기) 오염 / 수질 오염"},
+{unit:37, word:"miss", meaning:"놓치다, 그리워하다", example:"기차를 놓치다 / 요점을 놓치다"},
+{unit:37, word:"ideal", meaning:"이상적인, 상상의", example:"이상적인 아름다움"},
+{unit:37, word:"happen to", meaning:"~에게 일어나다", example:"많은 재미있는 일들이 쌍둥이들에게 일어난다."},
+{unit:37, word:"flash", meaning:"섬광, 번득임, 순간", example:"갑작스런 홍수 / 적색 섬광"},
+{unit:37, word:"enjoy -ing", meaning:"~을 즐기다", example:"Jake와 Sue는 배드민턴 치는 것을 즐긴다."},
+{unit:37, word:"disease", meaning:"병, 질병", example:"심장병 / 병으로 죽다"},
+{unit:37, word:"closet", meaning:"벽장", example:"그 신문들은 그 복도 벽장 안에 보관되어 있다."},
+{unit:37, word:"clinic", meaning:"병원, 진료소, 상담소", example:"치과 의원 / 법률 상담소"},
+{unit:37, word:"be famous for", meaning:"~으로 유명하다", example:"그 잡지는 그것의 단편 소설로 유명하다."},
+{unit:37, word:"arrival", meaning:"도착", example:"신생아, 새로 도착한 물건 / 도착일"},
+// Unit 38
+{unit:38, word:"whenever", meaning:"~할 때마다, ~할 때는 언제든지", example:"당신이 필요로 할 때는 언제든지 도움을 청할 수 있다."},
+{unit:38, word:"the other day", meaning:"요전날, 며칠 전", example:"나는 며칠 전에 Jack을 보았다."},
+{unit:38, word:"structure", meaning:"구조, 구성, 조립", example:"권력 구조 / 문장의 구성"},
+{unit:38, word:"safety", meaning:"안전", example:"교통안전 / 안전핀"},
+{unit:38, word:"put on", meaning:"~을 입다", example:"서둘러라! 너의 코트를 입어라!"},
+{unit:38, word:"popular", meaning:"인기 있는, 대중의", example:"대중 음악 / 보통 선거"},
+{unit:38, word:"most of", meaning:"~의 대부분", example:"그들 대부분은 거기에 가는 것을 결코 원하지 않았다."},
+{unit:38, word:"mistake", meaning:"실수; 오해하다", example:"틀림없이 / 잘못하여, 실수로"},
+{unit:38, word:"idiom", meaning:"관용어구, 숙어, 방언", example:"그 관용구는 사람들에게 특별한 메시지를 전달해준다."},
+{unit:38, word:"flat", meaning:"평평한, 펑크 난", example:"평면 / 펑크 난 타이어"},
+{unit:38, word:"dive", meaning:"다이빙하다, 잠수하다", example:"진주를 찾아 잠수하다"},
+{unit:38, word:"distance", meaning:"거리, 간격, 차이", example:"장거리 노선 / 원격 교육"},
+{unit:38, word:"clothing", meaning:"의류", example:"방호복 / 의식주"},
+{unit:38, word:"article", meaning:"글, 기사, 물품", example:"사설 / 의류 한 점"},
+// Unit 39
+{unit:39, word:"wherever", meaning:"어디든지", example:"당신은 당신이 원하는 어디든 내릴 수 있다."},
+{unit:39, word:"subject", meaning:"과목, 주제, 주어", example:"필수 과목 / 흥미 있는 주제"},
+{unit:39, word:"sailor", meaning:"선원", example:"그 선원은 그 큰 배에 오르고 있었다."},
+{unit:39, word:"population", meaning:"인구, 주민", example:"인구가 늘다 / 인구노령화"},
+{unit:39, word:"misunderstand", meaning:"오해하다", example:"때때로 우리는 서로를 오해한다."},
+{unit:39, word:"idol", meaning:"우상, 숭배물", example:"우상을 숭배하다 / 국민적 우상"},
+{unit:39, word:"have a look at", meaning:"~을 한 번 슬쩍 보다", example:"내가 그것을 한 번 볼게."},
+{unit:39, word:"flood", meaning:"홍수; 넘치다", example:"홍수 경보 / 수재를 당하다"},
+{unit:39, word:"flavor", meaning:"맛, 풍미, 운치", example:"단 맛 / 동양의 멋"},
+{unit:39, word:"enough to", meaning:"~할 만큼 충분한", example:"그는 그 상자를 옮길 만큼 힘이 세다."},
+{unit:39, word:"divide", meaning:"나누다, 분배하다", example:"반으로 나누다"},
+{unit:39, word:"clown", meaning:"어릿광대", example:"그는 커다란 붉은 코를 단 어릿광대를 보았다."},
+{unit:39, word:"be filled with", meaning:"~으로 가득 차다", example:"그 주차장은 차들로 가득 차 있다."},
+{unit:39, word:"ashamed", meaning:"부끄러워하는", example:"나는 어젯밤 나의 행동을 부끄러워하고 있다."},
+// Unit 40
+{unit:40, word:"whether", meaning:"~인지, ~이든 아니든", example:"그가 집에 있는지 어떤지 말해 주세요."},
+{unit:40, word:"these days", meaning:"요즘(에)", example:"요즘에는 아이들이 너무 빨리 큰다."},
+{unit:40, word:"success", meaning:"성공, 성과", example:"경제적 성공 / 성공하다"},
+{unit:40, word:"salary", meaning:"봉급, 급료", example:"월급 / 많은 급료를 받다"},
+{unit:40, word:"put together", meaning:"조립하다, 모아 만들다", example:"이것은 너무 복잡해서 조립할 수 없다."},
+{unit:40, word:"pose", meaning:"자세를 취하다", example:"카메라 앞에서 포즈를 취하다"},
+{unit:40, word:"need to", meaning:"~할 필요가 있다", example:"우리는 새 침구를 살 필요가 있다."},
+{unit:40, word:"mobile", meaning:"움직이기 쉬운", example:"이동식 장비 / 이동 도서관"},
+{unit:40, word:"importance", meaning:"중요, 중요성", example:"중대한 일 / 중요하지 않은"},
+{unit:40, word:"if", meaning:"만약 ~면, ~인지", example:"당신이 그를 본다면 그에게 이 쪽지를 전해 주세요."},
+{unit:40, word:"flow", meaning:"흐르다; 흐름, 범람", example:"흐름에 맡기다"},
+{unit:40, word:"doubt", meaning:"의심하다; 의심", example:"의심의 여지없이 / 의심이 생기다"},
+{unit:40, word:"coal", meaning:"석탄", example:"탄광 / 석탄 한 덩이"},
+{unit:40, word:"asleep", meaning:"잠든, 잠들어", example:"잠들다 / 잠결에"},
+// Unit 41
+{unit:41, word:"whoever", meaning:"누구나, 누가 ~하더라도", example:"오는 사람은 누구든지 환영받을 것이다."},
+{unit:41, word:"sudden", meaning:"뜻밖의, 갑작스러운", example:"갑작스러운 변화 / 갑자기"},
+{unit:41, word:"satisfy", meaning:"만족시키다, 채우다", example:"공복을 채우다"},
+{unit:41, word:"possess", meaning:"소유하다, 가지다", example:"선거권을 가지다"},
+{unit:41, word:"movement", meaning:"동작, 움직임, 운동", example:"안구 운동 / 종교 운동"},
+{unit:41, word:"modern", meaning:"현대의, 최신의", example:"현대시 / 최신 기술"},
+{unit:41, word:"impossible", meaning:"불가능한", example:"거의 불가능한 / 불가능한 업무"},
+{unit:41, word:"have been to", meaning:"~에 가본 적이 있다", example:"나는 내가 어렸을 때 파리에 가 본 적이 있다."},
+{unit:41, word:"foggy", meaning:"안개 낀, 혼란의", example:"안개 낀 거리"},
+{unit:41, word:"face to face", meaning:"얼굴을 맞대고, 대면하여", example:"그들은 카페에서 얼굴을 맞대고 앉아 있다."},
+{unit:41, word:"downstairs", meaning:"아래층으로, 아래층의", example:"아래층으로 내려가다 / 아래층의 방"},
+{unit:41, word:"coast", meaning:"해안, 연안", example:"해안 도로 / 해안 방위"},
+{unit:41, word:"be fond of", meaning:"~을 좋아하다", example:"그녀는 집에서 영화들을 보는 것을 좋아한다."},
+{unit:41, word:"assistant", meaning:"조수, 보조자; 보조의", example:"조교수 / 부지배인"},
+// Unit 42
+{unit:42, word:"whole", meaning:"전부의, 모든", example:"전 세계 / 만 하루"},
+{unit:42, word:"this way", meaning:"이리로", example:"제가 그의 사무실로 안내하겠습니다. 이쪽으로 오시죠."},
+{unit:42, word:"sum", meaning:"합계, 총액", example:"꽤 많은 돈 / 암산을 하다"},
+{unit:42, word:"scenery", meaning:"경치, 풍경", example:"풍경을 즐기다 / 시골 풍경"},
+{unit:42, word:"remember -ing", meaning:"(과거에) ~한 것을 기억하다", example:"나는 그녀를 전에 어디선가 본 기억이 난다."},
+{unit:42, word:"pour", meaning:"따르다, 붓다", example:"물을 붓다"},
+{unit:42, word:"post", meaning:"우편, 기둥, 지위, 직", example:"직책을 맡다"},
+{unit:42, word:"next to", meaning:"~의 옆에, ~의 이웃에", example:"그 노동자들은 트럭 옆에 서 있었다."},
+{unit:42, word:"muscle", meaning:"근육, 근력", example:"단단한 근육 / 팔의 근육"},
+{unit:42, word:"impression", meaning:"인상, 감명", example:"전반적인 인상"},
+{unit:42, word:"fold", meaning:"접다, 포개다", example:"돗자리를 걷다 / 반으로 접다"},
+{unit:42, word:"dramatic", meaning:"희곡의, 극적인", example:"감격적인 승리"},
+{unit:42, word:"cock", meaning:"수탉", example:"수컷 닭은 수탉으로 불린다."},
+{unit:42, word:"athlete", meaning:"운동선수", example:"천부적인 선수 / 장애인 선수"},
+// Unit 43
+{unit:43, word:"wire", meaning:"철사, 전선, 전보", example:"구리선 / 전보를 치다"},
+{unit:43, word:"super", meaning:"굉장한, 특별한", example:"대단한 식사"},
+{unit:43, word:"scientific", meaning:"과학적인, 과학의", example:"과학 지식 / 과학 이론"},
+{unit:43, word:"scholar", meaning:"학자, 장학생", example:"저명한 학자 / 공부 잘하는 학생"},
+{unit:43, word:"practical", meaning:"실제의, 현실적인", example:"실용 영어 / 현실적인 지원"},
+{unit:43, word:"mushroom", meaning:"버섯", example:"말린 버섯 / 버섯 수프"},
+{unit:43, word:"improve", meaning:"향상시키다, 개선하다", example:"기계를 개량하다 / 정확성이 향상되다"},
+{unit:43, word:"hear from", meaning:"소식을 듣다, 연락을 받다", example:"나는 아직도 은행에서 연락을 기다리고 있다."},
+{unit:43, word:"following", meaning:"다음의", example:"다음 달"},
+{unit:43, word:"fall down", meaning:"넘어지다, 떨어지다", example:"그들 모두 떨어지기 시작했다."},
+{unit:43, word:"drawer", meaning:"서랍", example:"서랍을 닫다"},
+{unit:43, word:"collect", meaning:"모으다, 수집하다", example:"통행료를 징수하다 / 정보를 모으다"},
+{unit:43, word:"be known to", meaning:"~에 알려져 있다", example:"그는 대중에게 알려져 있다."},
+{unit:43, word:"attack", meaning:"공격하다; 공격", example:"심장마비 / 적을 공격하다"},
+// Unit 44
+{unit:44, word:"wisdom", meaning:"지혜, 슬기(로움)", example:"삶의 지혜 / 사랑니"},
+{unit:44, word:"try to", meaning:"~하려고 애쓰다, 노력하다", example:"항상 영어로 생각하도록 노력해 보세요."},
+{unit:44, word:"surely", meaning:"확실히, 반드시, 물론", example:"더디긴 하지만 확실히 / 거의 확실하게"},
+{unit:44, word:"support", meaning:"부양하다, 지지하다", example:"제안을 지지하다 / 가족을 부양하다"},
+{unit:44, word:"scold", meaning:"꾸짖다", example:"가볍게 꾸짖다 / 장난꾸러기를 꾸짖다"},
+{unit:44, word:"remember to", meaning:"(미래에) ~할 것을 기억하다", example:"당신이 나갈 때 그 문을 잠그는 것을 기억하세요."},
+{unit:44, word:"pray", meaning:"기도하다, 빌다", example:"신에게 기도하다 / 평화를 기원하다"},
+{unit:44, word:"no longer", meaning:"더 이상 ~ 않다", example:"그녀는 더 이상 어린이가 아니다."},
+{unit:44, word:"nail", meaning:"못, 손톱", example:"못을 빼다 / 손톱깎이"},
+{unit:44, word:"include", meaning:"포함하다", example:"그 식사는 디저트와 커피가 포함된다."},
+{unit:44, word:"fond", meaning:"좋아하는", example:"호감이 가다 / 다정한 시선"},
+{unit:44, word:"dull", meaning:"흐린, 무딘, 둔한", example:"나쁜 시력 / 흐릿한 빛"},
+{unit:44, word:"comfortable", meaning:"편안한, 안락한", example:"안락한 의자 / 넉넉한 수입"},
+{unit:44, word:"attractive", meaning:"매력적인", example:"매력적인 제의 / 매력적인 소녀"},
+// Unit 45
+{unit:45, word:"wonder", meaning:"궁금하다, 놀라다, 경탄하다", example:"나는 그곳에서 너를 보고 놀랐다."},
+{unit:45, word:"within", meaning:"~ 이내에", example:"1주일 이내에 / 옥내에"},
+{unit:45, word:"surprise", meaning:"놀라게 하다; 놀라움", example:"기습 공격 / 깜짝 파티"},
+{unit:45, word:"screen", meaning:"칸막이, 스크린; 상영하다", example:"병풍 / 칸막이를 치다"},
+{unit:45, word:"prefer", meaning:"~을 더 좋아하다", example:"그 남자는 록 음악보다 재즈 음악을 더 좋아한다."},
+{unit:45, word:"naked", meaning:"벌거벗은, 노출된", example:"육안 / 맨발"},
+{unit:45, word:"increase", meaning:"증가하다, 늘리다", example:"속도를 높이다 / 값이 오르다"},
+{unit:45, word:"help A with B", meaning:"A가 B하는 것을 돕다", example:"나의 어머니는 내가 나의 숙제하는 것을 도와줬다."},
+{unit:45, word:"force", meaning:"힘, 폭력, 영향력", example:"공군 / 생명력"},
+{unit:45, word:"far from", meaning:"~으로부터 먼", example:"그곳은 당신의 집에서 아주 멀지 않다."},
+{unit:45, word:"dumb", meaning:"벙어리의, 말을 못하는", example:"농아 / 잠자코 있다"},
+{unit:45, word:"communicate", meaning:"의사소통하다, 전달하다", example:"이메일로 연락을 주고받다"},
+{unit:45, word:"be likely to", meaning:"~할 것 같다", example:"그 수는 계속해서 감소할 것 같다."},
+{unit:45, word:"audience", meaning:"관객, 청중", example:"영화 관객 / 청중에게 연설하다"},
+// Unit 46
+{unit:46, word:"wooden", meaning:"나무의, 목조의", example:"나무 상자 / 목조 가옥"},
+{unit:46, word:"turn into", meaning:"~로 변하다, ~로 되다", example:"우유는 치즈나 요구르트로 변한다."},
+{unit:46, word:"swan", meaning:"백조", example:"한 부유한 남자가 거위와 백조를 샀다."},
+{unit:46, word:"seal", meaning:"물개, 직인; 봉인하다", example:"공기가 들어갈 수 없도록 그 병을 밀봉해라."},
+{unit:46, word:"run after", meaning:"~의 뒤를 쫓다", example:"그들은 그 도둑을 쫓았지만 그는 빠져나갔다."},
+{unit:46, word:"present", meaning:"출석한, 참석한, 현재의", example:"오늘날 / 당면한 문제를 해결하다"},
+{unit:46, word:"no one", meaning:"아무도 ~ 아닌", example:"아무도 집에 없었다."},
+{unit:46, word:"narrow", meaning:"좁은, 한정된", example:"좁은 통로 / 좁은 뜻으로"},
+{unit:46, word:"indoor", meaning:"실내의", example:"실내복 / 실내 경기"},
+{unit:46, word:"forest", meaning:"숲, 삼림", example:"열대 숲 / 삼림의 나무를 벌채하다"},
+{unit:46, word:"dust", meaning:"먼지, 티끌; 먼지를 털다", example:"사금 / 그 책상의 먼지를 털다"},
+{unit:46, word:"company", meaning:"회사, 동료, 친구들", example:"좋은 친구들과 사귀다"},
+{unit:46, word:"average", meaning:"평균, 표준; 평균의", example:"평균 이상 / 평균 비율"},
+{unit:46, word:"author", meaning:"작가, 저자", example:"무명 작가 / 신진 작가"},
+// Unit 47
+{unit:47, word:"wool", meaning:"양털, 털실, 모직물", example:"모직 담요 / 털실 한 뭉치"},
+{unit:47, word:"sweat", meaning:"땀; 땀을 흘리다", example:"식은땀, 진땀 / 땀에 젖은"},
+{unit:47, word:"search", meaning:"찾다, 탐색하다", example:"가택 수색하다 / 상처를 살피다"},
+{unit:47, word:"pretend", meaning:"~인 체하다, 속이다", example:"꾀병을 부리다 / 잠자는 체하다"},
+{unit:47, word:"native", meaning:"타고난, 토착의", example:"타고난 권리 / 모국어"},
+{unit:47, word:"instant", meaning:"즉시의; 순간", example:"즉석에서"},
+{unit:47, word:"How about -ing ~?", meaning:"~하면 어떨까?", example:"프리랜서로 일하는 건 어떨까?"},
+{unit:47, word:"forgive", meaning:"용서하다, 사면하다", example:"죄를 용서하다 / 빚을 면제하다"},
+{unit:47, word:"fight against", meaning:"~와 싸우다", example:"그들은 추위와 배고픔과 싸워야 했다."},
+{unit:47, word:"dusty", meaning:"먼지투성이의, 애매한", example:"먼지가 자욱한 길 / 모호한 답"},
+{unit:47, word:"competition", meaning:"시합, 경쟁", example:"권투 시합 / 가격 경쟁"},
+{unit:47, word:"compass", meaning:"나침반, 범위, 둘레", example:"선박용 나침반"},
+{unit:47, word:"be made from", meaning:"~로 만들어지다", example:"그 꼭두각시 인형은 고무장갑으로 만들어졌다."},
+{unit:47, word:"awake", meaning:"깨우다, 잠이 깨다; 깨어 있는", example:"자지 않고 있다 / 잠에서 깨다"},
+// Unit 48
+{unit:48, word:"work", meaning:"일하다; 일, 작업", example:"학업 / 일자리를 찾다"},
+{unit:48, word:"What do you say to -ing ~?", meaning:"~하는 건 어때요?", example:"우리와 저녁을 드시는 게 어떻습니까?"},
+{unit:48, word:"task", meaning:"직무, 업무, 일", example:"고된 일"},
+{unit:48, word:"seashore", meaning:"해변, 해안", example:"해변을 산책하다"},
+{unit:48, word:"run away", meaning:"도망치다, 도망가다", example:"나는 그에게서 도망쳐야만 된다는 것을 알고 있었다."},
+{unit:48, word:"pretty", meaning:"상당히, 꽤", example:"꽤 추운 / 꽤 좋은 편이다"},
+{unit:48, word:"not ~ all", meaning:"모두 ~(은) 아닌 (부분 부정)", example:"모든 동물들이 등뼈가 있는 것은 아니다."},
+{unit:48, word:"nearly", meaning:"거의, 대략", example:"대개의 / 거의 언제나, 대체로"},
+{unit:48, word:"instead", meaning:"대신에, 그보다도", example:"대신에 나에게 이것을 주세요."},
+{unit:48, word:"fortunate", meaning:"운이 좋은, 행운의", example:"알맞은 결정을 내리다"},
+{unit:48, word:"dynamic", meaning:"동적인, 정력적인", example:"활발한 성격"},
+{unit:48, word:"duty", meaning:"임무, 의무", example:"근무 시간 / 근무 중, 일하고 있는"},
+{unit:48, word:"compute", meaning:"계산하다, 산출하다", example:"타율을 계산하다"},
+{unit:48, word:"aware", meaning:"알고 있는", example:"무의식적으로 / ~을 알다"},
+// Unit 49
+{unit:49, word:"worm", meaning:"벌레, 기생충", example:"일찍 일어나는 새가 벌레를 잡는다."},
+{unit:49, word:"tasty", meaning:"맛있는, 맛좋은", example:"맛있는 식사 / 맛있는 먹을거리"},
+{unit:49, word:"second", meaning:"두 번째, 초, 잠깐", example:"초침, 조수 / 이틀째에"},
+{unit:49, word:"pride", meaning:"긍지, 자랑", example:"~을 자랑하다 / 자만"},
+{unit:49, word:"needle", meaning:"바늘", example:"바늘귀"},
+{unit:49, word:"instruction", meaning:"지시, 설명, 가르침", example:"사용 설명서 / 종교적 가르침"},
+{unit:49, word:"in addition", meaning:"게다가", example:"게다가 부모님은 너무 많은 것들을 걱정한다."},
+{unit:49, word:"found", meaning:"기초를 세우다, 설립하다", example:"회사를 설립하다 / 새로운 이론을 정립하다"},
+{unit:49, word:"fortune", meaning:"행운, 운, 재산, 부", example:"재산을 남기다 / 불운"},
+{unit:49, word:"for instance", meaning:"예를 들면", example:"예를 들면 우리는 진실을 말하거나 거짓을 말할 수도 있다."},
+{unit:49, word:"eager", meaning:"열망하는, 열성적인", example:"성공을 갈망하는"},
+{unit:49, word:"condition", meaning:"조건, 상태, 상황", example:"완벽한 조건에서"},
+{unit:49, word:"be sorry for", meaning:"~을 안쓰럽게 여기다", example:"그는 Amy가 안쓰러워서 그녀를 도와주기를 원했다."},
+{unit:49, word:"babysitter", meaning:"아기를 봐주는 사람", example:"나는 오늘밤 아이를 봐 줄 사람을 구할 수가 없다."},
+// Unit 50
+{unit:50, word:"worried", meaning:"걱정스러운", example:"걱정스러운 표정"},
+{unit:50, word:"What is ~ like?", meaning:"~은 어때?", example:"유명인이 되면 어떨까?"},
+{unit:50, word:"technique", meaning:"기교, 기술", example:"기교를 부리다 / 농업 기술"},
+{unit:50, word:"section", meaning:"절단, 단편, 구역", example:"파이 한 쪽 / 상업 지구"},
+{unit:50, word:"same here", meaning:"나도 마찬가지이다", example:"나는 그것이 보고 싶어 기다릴 수가 없어. - 나도 그래."},
+{unit:50, word:"principal", meaning:"우두머리, 교장; 주요한", example:"주연 배우"},
+{unit:50, word:"not ~ always", meaning:"늘 ~하지는 않다 (부분 부정)", example:"부자들이 언제나 행복하지는 않다."},
+{unit:50, word:"negative", meaning:"부정적인", example:"반대 투표 / 부정적 답변"},
+{unit:50, word:"introduction", meaning:"소개, 도입, 서문", example:"소개장 / 서론으로"},
+{unit:50, word:"intelligent", meaning:"머리가 좋은, 총명한", example:"총명한 아이 / 재치 있는 답변"},
+{unit:50, word:"fountain pen", meaning:"만년필", example:"그 만년필은 루마니아에서 발명되었다."},
+{unit:50, word:"earn", meaning:"벌다, 얻다", example:"돈을 벌다 / 명성을 얻다"},
+{unit:50, word:"congratulation", meaning:"축하, 경축, 축사", example:"축사"},
+{unit:50, word:"backpack", meaning:"배낭", example:"내 배낭은 네 배낭보다 약 두 배 정도 크다."},
+// Unit 51
+{unit:51, word:"worse", meaning:"더 나쁜", example:"엎친 데 덮친 격으로 / 악화시키다"},
+{unit:51, word:"teens", meaning:"십대, 십대 시절", example:"아인슈타인은 모든 십대들에게 훌륭한 본보기이다."},
+{unit:51, word:"seed", meaning:"씨앗, 근원", example:"씨감자 / 종잣돈, 밑천"},
+{unit:51, word:"prison", meaning:"교도소, 감옥", example:"수감 중이다 / 출소하다"},
+{unit:51, word:"neither", meaning:"어느 ~도 아니다", example:"어느 대답도 옳지 않다."},
+{unit:51, word:"neighborhood", meaning:"근처, 이웃", example:"이 근처에 / 친절한 이웃"},
+{unit:51, word:"invent", meaning:"발명하다, 지어내다", example:"이유를 지어내다"},
+{unit:51, word:"in all", meaning:"모두 (합해서)", example:"저녁 식사에 우리는 모두 7명이었다."},
+{unit:51, word:"frame", meaning:"틀, 뼈대, 체격", example:"사진틀 / 체격이 좋다"},
+{unit:51, word:"for my part", meaning:"나로서는", example:"나로서는 누가 이기든 상관없다."},
+{unit:51, word:"earnest", meaning:"성실한, 진지한", example:"성실한 학생 / 진지한 고려"},
+{unit:51, word:"connect", meaning:"연결하다", example:"인터넷에 접속하다 / 가스를 연결하다"},
+{unit:51, word:"be sure of", meaning:"~을 확신하다", example:"그는 그의 성공을 확신한다."},
+{unit:51, word:"badly", meaning:"나쁘게, 몹시, 서투르게", example:"나쁘게 말하다 / 글씨가 서투르다"},
+// Unit 52
+{unit:52, word:"worst", meaning:"가장 나쁜, 최악의", example:"최악의 경우에"},
+{unit:52, word:"what to do", meaning:"무엇을 해야 할지", example:"그들은 다음으로 무엇을 할지에 대해 이야기한다."},
+{unit:52, word:"temperature", meaning:"온도, 기온, 체온", example:"기온 하락"},
+{unit:52, word:"seem", meaning:"~처럼 보이다", example:"~처럼 보이다 / ~한 모양이다"},
+{unit:52, word:"say goodbye to", meaning:"~에게 작별인사를 하다", example:"그녀는 그녀의 어머니에게 작별인사조차 하지 않았다."},
+{unit:52, word:"process", meaning:"과정, 진행; 처리하다", example:"평화 협상 과정 / 선발 과정"},
+{unit:52, word:"probably", meaning:"아마도, 대체로", example:"우리는 아마도 이틀정도 일찍 떠나야 한다."},
+{unit:52, word:"not ~ any longer", meaning:"더 이상 ~ 아니다", example:"우리는 더 이상 그들을 기다리지 않아도 될 것이다."},
+{unit:52, word:"nervous", meaning:"초조한", example:"신경 쇠약 / 초조한 목소리"},
+{unit:52, word:"invitation", meaning:"초대, 초대장", example:"초대권 / 초대되어"},
+{unit:52, word:"freedom", meaning:"자유", example:"표현의 자유 / 정의와 자유"},
+{unit:52, word:"earthquake", meaning:"지진", example:"해저 지진 / 강진"},
+{unit:52, word:"control", meaning:"지배, 통제; 통제하다", example:"교통 정리 / 물가를 통제하다"},
+{unit:52, word:"bake", meaning:"굽다", example:"빵을 굽다 / 벽돌을 굽다"},
+// Unit 53
+{unit:53, word:"worth", meaning:"가치; 가치 있는", example:"상당한 가치가 있다 / 가치가 없다"},
+{unit:53, word:"terrible", meaning:"끔찍한, 무서운", example:"끔찍한 경험"},
+{unit:53, word:"semester", meaning:"학기", example:"2학기 / 신학기"},
+{unit:53, word:"select", meaning:"선택하다, 뽑다", example:"날짜를 정하다"},
+{unit:53, word:"produce", meaning:"생산하다, 낳다", example:"면제품을 생산하다 / 열매를 맺다"},
+{unit:53, word:"nightmare", meaning:"악몽, 무서운 경험", example:"악몽을 꾸다 / 무서운 악몽"},
+{unit:53, word:"jaw", meaning:"턱, 입, 수다", example:"위턱 / 아래턱"},
+{unit:53, word:"in fact", meaning:"사실은, 실은", example:"사실, 그녀는 세계에서 가장 큰 여성이다."},
+{unit:53, word:"freeze", meaning:"얼다, 얼리다", example:"얼어서 죽다 / 가격을 동결하다"},
+{unit:53, word:"for oneself", meaning:"혼자 힘으로, 스스로", example:"나는 나 혼자 힘으로 이 프로젝트를 끝낼 것이다."},
+{unit:53, word:"effort", meaning:"노력, 수고", example:"노력하다"},
+{unit:53, word:"conversation", meaning:"대화", example:"전화 대화 / 사사로운 이야기"},
+{unit:53, word:"be worried about", meaning:"~에 대해 걱정하다", example:"그의 가족은 그의 안전에 대해 걱정하고 있다."},
+{unit:53, word:"banker", meaning:"은행가", example:"그는 그의 딸을 은행가와 결혼시켰다."},
+// Unit 54
+{unit:54, word:"wrap", meaning:"포장하다, 감싸다, 끝내다", example:"소포를 종이로 싸다"},
+{unit:54, word:"with joy", meaning:"기뻐서, 기꺼이", example:"그의 얼굴은 기뻐서 발그레하다."},
+{unit:54, word:"thankful", meaning:"감사하는, 고마워하는", example:"감사하는 마음 / 진심으로 감사하는"},
+{unit:54, word:"terror", meaning:"두려움, 공포", example:"깜짝 놀라서 / 테러 전술"},
+{unit:54, word:"senior", meaning:"손위의, 나이 많은", example:"원로 정치인 / 선임 장교"},
+{unit:54, word:"say hello to", meaning:"~에게 안부를 전하다", example:"그들은 서로 안부를 전한다."},
+{unit:54, word:"professional", meaning:"직업의, 전문적(인)", example:"직업 학교 / 프로 선수"},
+{unit:54, word:"not ~ at all", meaning:"전혀 ~ 않다", example:"날씨는 전혀 춥지 않았다."},
+{unit:54, word:"normal", meaning:"보통의, 정상적인; 보통", example:"정상 상태 / 보통 이하"},
+{unit:54, word:"jewel", meaning:"보석", example:"보석 상자 / 보석을 끼다"},
+{unit:54, word:"freshman", meaning:"신입생, 1학년생", example:"대학 1학년생 / 1학년 과정"},
+{unit:54, word:"elder", meaning:"손위의, 연상의", example:"누나, 언니 / 상관, 상사"},
+{unit:54, word:"cooker", meaning:"요리 도구", example:"전기 레인지 / 가스 레인지"},
+{unit:54, word:"bar", meaning:"막대, 장애, 술집, 전문점", example:"비누 한 개 / 커피 전문점"},
+// Unit 55
+{unit:55, word:"yell", meaning:"소리 지르다", example:"소리쳐 도움을 청하다 / 큰 소리로 명령하다"},
+{unit:55, word:"wrist", meaning:"손목", example:"팔씨름 / 손목 통증"},
+{unit:55, word:"Thanksgiving Day", meaning:"추수감사절", example:"추수감사절에 미국인들은 무엇을 먹나요?"},
+{unit:55, word:"sense", meaning:"지각, 인식, 감각", example:"시각 / 상식"},
+{unit:55, word:"professor", meaning:"교수", example:"화학 교수 / 정교수"},
+{unit:55, word:"notice", meaning:"통보, 주목; 알아차리다", example:"사전 통고"},
+{unit:55, word:"journey", meaning:"여행; 여행하다", example:"도보 여행 / 여행하다"},
+{unit:55, word:"in favor of", meaning:"~에 찬성하여", example:"나는 그의 견해에 찬성한다."},
+{unit:55, word:"fuel", meaning:"연료", example:"고체 연료 / 핵연료"},
+{unit:55, word:"for the first time", meaning:"처음으로", example:"나는 작년에 처음으로 마술쇼를 보았다."},
+{unit:55, word:"election", meaning:"선거", example:"당선되다 / 선거 연설"},
+{unit:55, word:"copper", meaning:"구리, 동", example:"구리 광산 / 구리관"},
+{unit:55, word:"before long", meaning:"머지않아", example:"머지않아 어두워질 것이다."},
+{unit:55, word:"bargain", meaning:"싸게 산 물건, 거래", example:"할인 가격"},
+// Unit 56
+{unit:56, word:"youth", meaning:"청춘, 젊음", example:"유망한 청년 / 영원한 젊음"},
+{unit:56, word:"work for", meaning:"~에서 일하다", example:"나는 지금 은행에서 일한다."},
+{unit:56, word:"therefore", meaning:"그러므로", example:"그러므로 그는 컴퓨터를 사용하는 방법을 배워야 한다."},
+{unit:56, word:"serious", meaning:"진지한, 심각한", example:"심각한 질병 / 진지한 얼굴"},
+{unit:56, word:"see off", meaning:"전송하다, 배웅하다", example:"나는 그를 배웅하기 위해 역까지 갔다."},
+{unit:56, word:"project", meaning:"계획, 과제; 계획하다", example:"연구 조사 계획 / 댐을 계획하다"},
+{unit:56, word:"novelist", meaning:"소설가", example:"역사 소설가"},
+{unit:56, word:"not ~ yet", meaning:"아직 ~ 않다", example:"그는 아직 그의 소설을 완성하지 못했다."},
+{unit:56, word:"joyful", meaning:"즐거운, 기쁜", example:"기뻐하는 표정 / 즐거운 행사"},
+{unit:56, word:"full moon", meaning:"만월, 보름달", example:"한국인들은 추석날 밤에 보름달을 즐긴다."},
+{unit:56, word:"electric", meaning:"전기의, 전기장치의", example:"전기 모터 / 전기 다리미"},
+{unit:56, word:"copy", meaning:"복사본, 한 부; 복사하다", example:"복사하다"},
+{unit:56, word:"barley", meaning:"보리", example:"보리를 수확하다 / 보리농사를 짓다"},
+{unit:56, word:"bark", meaning:"짖다; 나무껍질, 짖는 소리", example:"낯선 사람에게 짖다 / 자작나무 껍질"},
+// Unit 57
+{unit:57, word:"thief", meaning:"도둑", example:"그 도둑은 그 용감한 남자에게 붙잡혔다."},
+{unit:57, word:"sesame", meaning:"참깨", example:"참기름"},
+{unit:57, word:"promise", meaning:"약속, 가망성", example:"약속을 하다 / 약속을 어기다"},
+{unit:57, word:"nowhere", meaning:"아무 곳에도 ~ 없다", example:"그 잃어버린 펜은 어디에서도 찾을 수가 없었다."},
+{unit:57, word:"judge", meaning:"판단하다; 판사, 심판", example:"사건을 재판하다"},
+{unit:57, word:"in half", meaning:"절반으로, 둘로", example:"그는 칼로 그 사과를 반으로 잘랐다."},
+{unit:57, word:"gain", meaning:"얻다, 구하다", example:"체중이 늘다 / 상을 타다"},
+{unit:57, word:"forget -ing", meaning:"(과거에) ~한 것을 잊다", example:"나는 그의 연설을 들었던 것을 결코 잊지 않을 것이다."},
+{unit:57, word:"employ", meaning:"고용하다", example:"현지인을 고용하다"},
+{unit:57, word:"emergency", meaning:"비상사태, 긴급사태", example:"비상구 / 긴급사태에 직면하다"},
+{unit:57, word:"cost", meaning:"가격, 비용; 비용이 들다", example:"무료로 / 생활비"},
+{unit:57, word:"correct", meaning:"올바른, 정확한; 고치다", example:"올바른 판단 / 오류들을 고치다"},
+{unit:57, word:"between A and B", meaning:"A와 B 사이에", example:"그곳은 그 우체국과 그 은행 사이에 있다."},
+{unit:57, word:"base", meaning:"바닥, 토대; ~에 기초를 두다", example:"기준 가격 / 터전을 마련하다"},
+// Unit 58
+{unit:58, word:"would you mind -ing?", meaning:"~해 주시지 않겠습니까?", example:"그 아기를 봐주시면 안 될까요?"},
+{unit:58, word:"thin", meaning:"얇은, 야윈", example:"얇은 조각 / 가는 철사"},
+{unit:58, word:"several", meaning:"몇몇의, 여러 개의", example:"며칠간 / 여러 가지 경우들"},
+{unit:58, word:"seem to", meaning:"~처럼 보이다", example:"사람들이 이런 불필요한 소음을 참는 것 같다."},
+{unit:58, word:"propose", meaning:"제안하다, 신청하다", example:"문제를 내다 / ~에게 청혼하다"},
+{unit:58, word:"nun", meaning:"수녀", example:"마더 테레사는 수녀이자 강인한 여성이었다."},
+{unit:58, word:"not A but B", meaning:"A가 아니라 B", example:"모든 것을 엉망으로 만든 것은 내가 아니고 Tom이다."},
+{unit:58, word:"knit", meaning:"짜다, 뜨다", example:"목도리를 뜨다 / 털실로 장갑을 뜨다"},
+{unit:58, word:"judgment", meaning:"재판, 판단", example:"판단 착오 / 판결문"},
+{unit:58, word:"garlic", meaning:"마늘", example:"마늘 한 쪽 / 마늘을 까다"},
+{unit:58, word:"garbage", meaning:"쓰레기", example:"쓰레기 수거 / 쓰레기를 버리다"},
+{unit:58, word:"empty", meaning:"텅 빈, 공허한", example:"빈 병 / 공허한 약속"},
+{unit:58, word:"cotton", meaning:"목화, 솜, 면", example:"면화 / 면 셔츠"},
+{unit:58, word:"basement", meaning:"지하실, 지하층", example:"지하 주차장 / 지하 2층"},
+// Unit 59
+{unit:59, word:"though", meaning:"비록 ~일지라도", example:"비는 그쳤으나 바람은 여전히 불고 있었다."},
+{unit:59, word:"shadow", meaning:"그림자, 환영", example:"건물의 그림자 / 그늘이 져서"},
+{unit:59, word:"prove", meaning:"판명되다, 증명하다", example:"그것이 진실임을 증명하다 / 오로 판명되다"},
+{unit:59, word:"protect", meaning:"보호하다, 지키다", example:"자연을 보호하다 / 약자를 지키다"},
+{unit:59, word:"object", meaning:"물건, 물체, 목적", example:"먼 곳에 있는 물체 / 위험물"},
+{unit:59, word:"nut", meaning:"견과, 너트", example:"잣 / 너트를 조이다"},
+{unit:59, word:"knowledge", meaning:"지식", example:"과학적 지식 / 지식을 축적하다"},
+{unit:59, word:"in haste", meaning:"급히, 서둘러", example:"그는 그 의사를 부르러 급히 나를 보냈다."},
+{unit:59, word:"gather", meaning:"모이다, 모으다", example:"부를 쌓다 / 증거를 모으다"},
+{unit:59, word:"forget to", meaning:"(앞으로) ~할 것을 잊다", example:"너의 안전띠를 매는 것을 잊지 마라."},
+{unit:59, word:"enemy", meaning:"적, 반대자", example:"천적 / 적을 물리치다"},
+{unit:59, word:"courage", meaning:"용기", example:"맹목적인 용기 / 낙담하다"},
+{unit:59, word:"bring A to B", meaning:"A를 B로 가져오다, 데려오다", example:"그녀는 그 파티에 그녀의 친구를 데려갈 것이다."},
+{unit:59, word:"batter", meaning:"강타하다; 타자", example:"강타자"},
+// Unit 60
+{unit:60, word:"write down", meaning:"적어두다", example:"잊기 전에 그 주소를 적어 두어라."},
+{unit:60, word:"tie", meaning:"매다, 묶다; 넥타이", example:"리본을 매다 / 줄무늬 실크 넥타이"},
+{unit:60, word:"throat", meaning:"목구멍, 숨통", example:"목이 아프다 / 헛기침하다"},
+{unit:60, word:"share", meaning:"공유하다, 나누다", example:"파일을 공유하다 / 비용을 분담하다"},
+{unit:60, word:"shake", meaning:"흔들다, 흔들리다", example:"방울을 흔들다 / 위아래로 흔들리다"},
+{unit:60, word:"set the alarm clock", meaning:"자명종 시계를 맞추다", example:"그는 잠자리에 들기 전에 자명종 시계를 맞추었다."},
+{unit:60, word:"public", meaning:"대중의, 공개적인", example:"공휴일 / 공공 도서관"},
+{unit:60, word:"occasion", meaning:"경우, 기회, 행사", example:"이때에는 / 기억할 만한 행사"},
+{unit:60, word:"not ~ both", meaning:"둘 다 ~인 것은 아니다 (부분 부정)", example:"나는 두 사람 모두를 아는 것은 아니다."},
+{unit:60, word:"lamb", meaning:"어린양, 새끼 양", example:"새끼 양 한 마리가 개울에서 물을 마시고 있었다."},
+{unit:60, word:"generally", meaning:"일반적으로", example:"일반적으로 말해서"},
+{unit:60, word:"enjoyable", meaning:"재미있는, 즐거운", example:"즐거운 주말 / 즐거운 여행"},
+{unit:60, word:"court", meaning:"법정, 법원, 경기장, 궁전", example:"테니스 코트 / 법정에서"},
+{unit:60, word:"beat", meaning:"때리다, 치다, 맞추다", example:"북을 치다 / 박자를 맞추다"},
+];
+
+
+// ---------- App logic ----------
+const ALL_UNITS = [...new Set(WORDS.map(w => w.unit))].sort((a,b) => a - b);
+
+let queue = [];
+let currentIndex = 0;
+let correctCount = 0;
+let wrongWords = [];
+let totalCount = 0;
+let selectedUnits = new Set();
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ----- Unit selection screen -----
+function buildUnitGrid() {
+  const grid = document.getElementById("unitGrid");
+  grid.innerHTML = ALL_UNITS.map(u => `
+    <div class="unit-chip">
+      <input type="checkbox" id="u${u}" data-unit="${u}">
+      <label for="u${u}">${u}</label>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener("change", () => {
+      const unit = Number(cb.dataset.unit);
+      if (cb.checked) selectedUnits.add(unit);
+      else selectedUnits.delete(unit);
+      updateSelectionSummary();
+    });
+  });
+}
+
+function updateSelectionSummary() {
+  const summary = document.getElementById("selectionSummary");
+  const startBtn = document.getElementById("startBtn");
+  const count = selectedUnits.size;
+  const wordCount = WORDS.filter(w => selectedUnits.has(w.unit)).length;
+
+  if (count === 0) {
+    summary.innerHTML = "유닛을 선택하세요";
+    startBtn.disabled = true;
+  } else {
+    summary.innerHTML = `<span class="count">${count}개 유닛</span> 선택됨 · 단어 ${wordCount}개`;
+    startBtn.disabled = false;
+  }
+}
+
+document.getElementById("selectAllBtn").addEventListener("click", () => {
+  selectedUnits = new Set(ALL_UNITS);
+  document.querySelectorAll('#unitGrid input[type="checkbox"]').forEach(cb => cb.checked = true);
+  updateSelectionSummary();
+});
+
+document.getElementById("clearAllBtn").addEventListener("click", () => {
+  selectedUnits = new Set();
+  document.querySelectorAll('#unitGrid input[type="checkbox"]').forEach(cb => cb.checked = false);
+  updateSelectionSummary();
+});
+
+document.getElementById("startBtn").addEventListener("click", () => {
+  const pool = WORDS.filter(w => selectedUnits.has(w.unit));
+  startQuiz(pool);
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("selectScreen").classList.remove("hidden");
+  document.getElementById("subTitle").textContent = "Unit 24~60 · 원하는 유닛을 골라 시작하세요";
+});
+
+// ----- Quiz screen -----
+function startQuiz(pool) {
+  queue = shuffle(pool);
+  totalCount = queue.length;
+  currentIndex = 0;
+  correctCount = 0;
+  wrongWords = [];
+
+  document.getElementById("selectScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
+
+  const unitsUsed = [...new Set(pool.map(w => w.unit))].sort((a,b) => a - b);
+  const unitLabel = unitsUsed.length === 1
+    ? `Unit ${unitsUsed[0]}`
+    : `Unit ${unitsUsed[0]}~${unitsUsed[unitsUsed.length - 1]} (${unitsUsed.length}개 유닛)`;
+  document.getElementById("subTitle").textContent = `${unitLabel} · 총 ${totalCount}개 단어`;
+
+  renderCard();
+  updateProgress();
+}
+
+function updateProgress() {
+  const fill = document.getElementById("progressFill");
+  const label = document.getElementById("progressLabel");
+  const done = currentIndex;
+  const pct = totalCount ? (done / totalCount) * 100 : 0;
+  fill.style.width = pct + "%";
+  label.textContent = done + " / " + totalCount;
+}
+
+function renderCard() {
+  const card = document.getElementById("quizCard");
+  document.body.classList.remove("keyboard-open");
+
+  if (currentIndex >= queue.length) {
+    renderDone();
+    return;
+  }
+
+  const item = queue[currentIndex];
+  card.innerHTML = `
+    <span class="unit-tag">Unit ${item.unit}</span>
+    <div class="meaning">${item.meaning}</div>
+    <div class="example-kr">${item.example}</div>
+    <div class="input-row">
+      <input type="text" id="answerInput" placeholder="영어 스펠링을 입력하세요" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button class="btn-check" id="checkBtn">확인</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="footer-row">
+      <div class="stats">맞음 <span>${correctCount}</span> / 남음 ${queue.length - currentIndex}</div>
+    </div>
+  `;
+
+  const input = document.getElementById("answerInput");
+  const checkBtn = document.getElementById("checkBtn");
+
+  input.addEventListener("focus", () => {
+    document.body.classList.add("keyboard-open");
+    setTimeout(() => { window.scrollTo(0, 0); }, 300);
+  });
+  input.addEventListener("blur", () => {
+    setTimeout(() => {
+      if (document.activeElement !== input) {
+        document.body.classList.remove("keyboard-open");
+      }
+    }, 200);
+  });
+
+  const handleCheckPress = (e) => {
+    e.preventDefault();
+    checkAnswer();
+  };
+  checkBtn.addEventListener("touchstart", handleCheckPress, { passive: false });
+  checkBtn.addEventListener("mousedown", handleCheckPress);
+
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") checkAnswer();
+  });
+}
+
+function normalize(str) {
+  return str.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function checkAnswer() {
+  const item = queue[currentIndex];
+  const input = document.getElementById("answerInput");
+  const feedback = document.getElementById("feedback");
+  const userAnswer = normalize(input.value);
+  const correctAnswer = normalize(item.word);
+
+  if (!input.value.trim()) return;
+
+  const wasKeyboardOpen = document.body.classList.contains("keyboard-open");
+
+  if (userAnswer === correctAnswer) {
+    correctCount++;
+    input.classList.remove("wrong-shake");
+    input.classList.add("correct-glow");
+    input.disabled = true;
+    if (wasKeyboardOpen) document.body.classList.add("keyboard-open");
+    feedback.textContent = "🎉 정답이에요! " + item.word;
+    feedback.className = "feedback correct";
+    document.getElementById("checkBtn").disabled = true;
+    setTimeout(() => {
+      currentIndex++;
+      updateProgress();
+      renderCard();
+    }, 900);
+  } else {
+    wrongWords.push(item);
+    input.classList.remove("correct-glow");
+    input.classList.add("wrong-shake");
+    input.disabled = true;
+    if (wasKeyboardOpen) document.body.classList.add("keyboard-open");
+    feedback.innerHTML = `❌ 정답은 <b>${item.word}</b> 이었어요`;
+    feedback.className = "feedback incorrect";
+    document.getElementById("checkBtn").disabled = true;
+    setTimeout(() => {
+      currentIndex++;
+      updateProgress();
+      renderCard();
+    }, 1400);
+  }
+}
+
+function renderDone() {
+  const card = document.getElementById("quizCard");
+  const uniqueWrong = [...new Map(wrongWords.map(w => [w.word, w])).values()];
+
+  let retryHtml = "";
+  if (uniqueWrong.length > 0) {
+    retryHtml = `
+      <div class="retry-list">
+        ${uniqueWrong.map(w => `<div><span class="word">${w.word}</span><span class="kr">${w.meaning}</span></div>`).join("")}
+      </div>
+    `;
+  }
+
+  card.innerHTML = `
+    <div class="done-screen">
+      <div class="big-emoji">${uniqueWrong.length === 0 ? "🏆" : "✨"}</div>
+      <h2>${uniqueWrong.length === 0 ? "완벽해요!" : "수고했어요!"}</h2>
+      <p>${totalCount}개 중 첫 시도에 ${totalCount - uniqueWrong.length}개 정답</p>
+      ${uniqueWrong.length > 0 ? "<p style='margin-top:-14px'>틀렸던 단어들이에요:</p>" + retryHtml : ""}
+      ${uniqueWrong.length > 0 ? '<button class="btn-review" id="reviewBtn">틀린 단어만 다시 풀기 📝</button>' : ""}
+      <button class="btn-restart" id="restartBtn">같은 유닛 다시 풀기</button>
+      <button class="btn-pick-again" id="pickAgainBtn">‹ 다른 유닛 선택하기</button>
+    </div>
+  `;
+
+  const currentPool = [...new Set([...queue, ...wrongWords])];
+  const lastPool = queue.length ? queue : [];
+
+  document.getElementById("restartBtn").addEventListener("click", () => {
+    startQuiz(lastFullPool);
+  });
+  document.getElementById("pickAgainBtn").addEventListener("click", () => {
+    document.getElementById("quizScreen").classList.add("hidden");
+    document.getElementById("selectScreen").classList.remove("hidden");
+    document.getElementById("subTitle").textContent = "Unit 24~60 · 원하는 유닛을 골라 시작하세요";
+  });
+  if (uniqueWrong.length > 0) {
+    document.getElementById("reviewBtn").addEventListener("click", () => {
+      startQuiz(uniqueWrong);
+    });
+  }
+}
+
+let lastFullPool = [];
+const _origStartQuiz = startQuiz;
+startQuiz = function(pool) {
+  lastFullPool = pool;
+  _origStartQuiz(pool);
+};
+
+buildUnitGrid();
+</script>
+
+</body>
+</html>
